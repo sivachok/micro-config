@@ -12,15 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "placeholder"
-
-  publish-pages:
-    name: publish-pages
-    needs: placeholder
-    runs-on: ubuntu-latest
-    environment:
-      name: pages
-    steps:
-      - run: echo "publish-pages"
+ 
 
   wiz-data-scanner:
     name: Wiz Data Scanner
@@ -56,3 +48,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Wiz Vulnerability Scanner"
+
+  publish-pages:
+    name: publish-pages
+    needs: placeholder
+    runs-on: ubuntu-latest
+    environment:
+      name: pages
+    steps:
+      - run: echo "publish-pages"
