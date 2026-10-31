@@ -1,56 +1,58 @@
 
-name: CI Playground
+name: GitLab Pipeline POC
 
 on:
   push:
     branches: [master]
-
   workflow_dispatch:
-    inputs:
-      run_tests:
-        description: "Run manual tests"
-        type: boolean
-        default: false
-      run_security:
-        description: "Run security scan"
-        type: boolean
-        default: false
-      run_deploy:
-        description: "Run deployment"
-        type: boolean
-        default: false
 
 jobs:
-  build:
-    name: "1 - Build (auto)"
+  placeholder:
+    name: placeholder
     runs-on: ubuntu-latest
     steps:
-      - run: echo "BUILD"
+      - run: echo "placeholder"
 
-  lint:
-    name: "2 - Lint (auto)"
+  publish-pages:
+    name: publish-pages
+    needs: placeholder
     runs-on: ubuntu-latest
+    environment:
+      name: pages
     steps:
-      - run: echo "LINT"
+      - run: echo "publish-pages"
 
-  tests:
-    name: "3 - Tests (manual)"
-    if: ${{ inputs.run_tests == true }}
+  wiz-data-scanner:
+    name: Wiz Data Scanner
+    needs: placeholder
     runs-on: ubuntu-latest
     steps:
-      - run: echo "TESTS"
+      - run: echo "Wiz Data Scanner"
 
-  security:
-    name: "4 - Security (manual)"
-    if: ${{ inputs.run_security == true }}
+  wiz-iac-scanner:
+    name: Wiz IaC Scanner
+    needs: placeholder
     runs-on: ubuntu-latest
     steps:
-      - run: echo "SECURITY"
+      - run: echo "Wiz IaC Scanner"
 
-  deploy:
-    name: "5 - Deploy (manual)"
-    if: ${{ inputs.run_deploy == true }}
-    needs: [build]
+  wiz-sast-scanner:
+    name: Wiz SAST Scanner
+    needs: placeholder
     runs-on: ubuntu-latest
     steps:
-      - run: echo "DEPLOY"
+      - run: echo "Wiz SAST Scanner"
+
+  wiz-secret-scanner:
+    name: Wiz Secret Scanner
+    needs: placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Wiz Secret Scanner"
+
+  wiz-vulnerability-scanner:
+    name: Wiz Vulnerability Scanner
+    needs: placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Wiz Vulnerability Scanner"
