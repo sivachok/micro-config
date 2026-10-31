@@ -1,0 +1,30 @@
+
+name: Deploy with approval
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build application
+        run: echo "BUILD SUCCESSFUL"
+
+  deploy:
+    name: Deploy to production
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: production
+
+    steps:
+      - name: Deploy application
+        run: echo "DEPLOYING TO PRODUCTION"
+
+      - name: Deployment completed
+        run: echo "PRODUCTION DEPLOYMENT SUCCESSFUL"
