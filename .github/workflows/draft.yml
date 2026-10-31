@@ -1,0 +1,56 @@
+
+name: CI Playground
+
+on:
+  push:
+    branches: [master]
+
+  workflow_dispatch:
+    inputs:
+      run_tests:
+        description: "Run manual tests"
+        type: boolean
+        default: false
+      run_security:
+        description: "Run security scan"
+        type: boolean
+        default: false
+      run_deploy:
+        description: "Run deployment"
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    name: "1 - Build (auto)"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "BUILD"
+
+  lint:
+    name: "2 - Lint (auto)"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "LINT"
+
+  tests:
+    name: "3 - Tests (manual)"
+    if: ${{ inputs.run_tests == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "TESTS"
+
+  security:
+    name: "4 - Security (manual)"
+    if: ${{ inputs.run_security == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "SECURITY"
+
+  deploy:
+    name: "5 - Deploy (manual)"
+    if: ${{ inputs.run_deploy == true }}
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "DEPLOY"
