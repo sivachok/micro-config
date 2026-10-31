@@ -1,0 +1,59 @@
+name: GitLab Pipeline POC
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  placeholder:
+    name: placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder
+        run: echo "placeholder"
+
+  publish-pages:
+    name: publish-pages
+    needs: placeholder
+    runs-on: ubuntu-latest
+    environment:
+      name: pages
+    steps:
+      - name: Publish pages
+        run: echo "publish-pages"
+
+  wiz-data-scanner:
+    name: Wiz Data Scanner
+    needs: publish-pages
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Wiz Data Scanner"
+
+  wiz-iac-scanner:
+    name: Wiz IaC Scanner
+    needs: publish-pages
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Wiz IaC Scanner"
+
+  wiz-sast-scanner:
+    name: Wiz SAST Scanner
+    needs: publish-pages
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Wiz SAST Scanner"
+
+  wiz-secret-scanner:
+    name: Wiz Secret Scanner
+    needs: publish-pages
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Wiz Secret Scanner"
+
+  wiz-vulnerability-scanner:
+    name: Wiz Vulnerability Scanner
+    needs: publish-pages
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Wiz Vulnerability Scanner"
